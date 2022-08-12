@@ -268,4 +268,13 @@ function transactionsToCsv() {
   return constructCsv(headings, rows);
 }
 
-console.log(transactionsToCsv());
+const csvContent = 'data:text/csv;charset=utf-8,' + transactionsToCsv();
+
+var encodedUri = encodeURI(csvContent);
+var link = document.createElement('a');
+link.setAttribute('href', encodedUri);
+link.setAttribute('download', 'data.csv');
+link.textContent = 'Download CSV';
+document.body.appendChild(link);
+
+// link.click(); // This will download the data file named "data.csv".
